@@ -1,0 +1,4 @@
+services:
+#    systeo_product.example:
+#        class: Systeo\ProductBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
