@@ -1,0 +1,64 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+     <div class="row">
+        <div class="col-lg-12">
+            <fieldset>
+                <legend>{{ 'Liste des Marques'}}</legend>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn_add pull-right margin_bottom_20">
+                <a href="{{ path('marque_new') }}"  class="btn btn-success pull-right">Ajouter <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Marque</th>
+                        <th>Publié</th>
+                        <th class="index_th_action">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for marque in marques %}
+                        <tr>
+                            <td>{{marque.name}}</td>
+                            <td>
+                                {% if marque.publie %}
+                                    <span class="label label-success">Oui</span>
+                                {% else %}
+                                    <span class="label label-danger">Non</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <ul class="index_action_buttons">
+                                    <li>
+                                        <a href="{{ path('marque_show', { 'id': marque.id }) }}"  class="btn btn-primary btn-xs">Détails <span class="glyphicon glyphicon-search"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('marque_edit', { 'id': marque.id }) }}"  class="btn btn-warning btn-xs">Modifier  <span class="glyphicon glyphicon-edit"></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="navigation">
+                {{ knp_pagination_render(marques) }}
+            </div> 
+        </div>
+    </div>
+{% endblock %}
